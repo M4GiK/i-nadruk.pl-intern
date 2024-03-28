@@ -1,0 +1,205 @@
+<meta charSet="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kalkulator cen</title>
+<style>
+    label {
+        color: #000;
+    }
+
+    input[type="number"],
+    select {
+        background-color: #ffffff;
+        color: #000;
+        border: 2px solid #ef4847;
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 10px;
+        margin-left: 50px;
+        text-align: left;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    #tlo {
+        background-color: rgba(124, 124, 124, 0.07);
+        border-radius: 25px;
+    }
+</style>
+
+<div id="tlo" style="width: 350px; height: 500px;">
+    <h1><br></h1>
+    <div id="calculator">
+        <label htmlFor="printType">Typ wydruku:</label>
+        <select id="printType" onChange="calculatePrice()">
+            <option value="DTF">DTF</option>
+        </select><br>
+
+        <label htmlFor="size">Rozmiar:</label>
+        <select id="size" onChange="calculatePrice()">
+            <option value="A7">A7 100x75mm</option>
+            <option value="A6">A6 100x150mm</option>
+            <option value="A5">A5 150x200mm</option>
+            <option value="A4">A4 290x200mm</option>
+            <option value="A3">A3 290x400mm</option>
+        </select><br>
+
+        <label htmlFor="quantity">Ilość sztuk:</label>
+        <input type="number" id="quantity" min="1" value="1" onChange="calculatePrice()"><br>
+
+        <!-- Dodajemy element, gdzie będzie wyświetlany wynik -->
+        <div id="result"></div>
+    </div>
+
+    <script>
+        // Pobierz pola wyboru
+        const sizeSelect = document.getElementById("size");
+        const quantityInput = document.getElementById("quantity");
+
+        // Pamiętaj, żeby zdefiniować resultElement, bo go wcześniej nie miałeś
+        const resultElement = document.getElementById("result");
+
+        function calculatePrice() {
+            const printType = document.getElementById("printType").value;
+            const size = document.getElementById("size").value;
+            const quantity = parseInt(document.getElementById("quantity").value);
+
+            let basePrice = 0;
+
+            switch (printType) {
+                case "DTF":
+                    switch (size) {
+                        case "A7":
+                            switch (true) {
+                                case (quantity <= 5):
+                                    basePrice = 21.99;
+                                    break;
+                                case (quantity <= 10):
+                                    basePrice = 15.35;
+                                    break;
+                                case (quantity <= 25):
+                                    basePrice = 10.80;
+                                    break;
+                                case (quantity <= 50):
+                                    basePrice = 10.26;
+                                    break;
+                                case (quantity <= 100):
+                                    basePrice = 8.10;
+                                    break;
+                                case (quantity <= 300):
+                                    basePrice = 7.02;
+                                    break;
+                                case (quantity <= 500):
+                                    basePrice = 6.48;
+                                    break;
+                            }
+                            break;
+                        case "A6":
+                            switch (true) {
+                                case (quantity <= 5):
+                                    basePrice = 27.48;
+                                    break;
+                                case (quantity <= 10):
+                                    basePrice = 19.19;
+                                    break;
+                                case (quantity <= 25):
+                                    basePrice = 13.50;
+                                    break;
+                                case (quantity <= 50):
+                                    basePrice = 12.82;
+                                    break;
+                                case (quantity <= 100):
+                                    basePrice = 10.10;
+                                    break;
+                                case (quantity <= 300):
+                                    basePrice = 8.80;
+                                    break;
+                                case (quantity <= 500):
+                                    basePrice = 8.10;
+                                    break;
+                            }
+                            break;
+                        case "A5":
+                            switch (true) {
+                                case (quantity <= 5):
+                                    basePrice = 32.93;
+                                    break;
+                                case (quantity <= 10):
+                                    basePrice = 22.99;
+                                    break;
+                                case (quantity <= 25):
+                                    basePrice = 16.17;
+                                    break;
+                                case (quantity <= 50):
+                                    basePrice = 15.36;
+                                    break;
+                                case (quantity <= 100):
+                                    basePrice = 12.13;
+                                    break;
+                                case (quantity <= 300):
+                                    basePrice = 10.51;
+                                    break;
+                                case (quantity <= 500):
+                                    basePrice = 9.70;
+                                    break;
+                            }
+                            break;
+                        case "A4":
+                            switch (true) {
+                                case (quantity <= 5):
+                                    basePrice = 38.40;
+                                    break;
+                                case (quantity <= 10):
+                                    basePrice = 26.81;
+                                    break;
+                                case (quantity <= 25):
+                                    basePrice = 18.86;
+                                    break;
+                                case (quantity <= 50):
+                                    basePrice = 17.92;
+                                    break;
+                                case (quantity <= 100):
+                                    basePrice = 14.14;
+                                    break;
+                                case (quantity <= 300):
+                                    basePrice = 12.26;
+                                    break;
+                                case (quantity <= 500):
+                                    basePrice = 11.32;
+                                    break;
+                            }
+                            break;
+                        case "A3":
+                            switch (true) {
+                                case (quantity <= 5):
+                                    basePrice = 63.50;
+                                    break;
+                                case (quantity <= 10):
+                                    basePrice = 44.34;
+                                    break;
+                                case (quantity <= 25):
+                                    basePrice = 31.19;
+                                    break;
+                                case (quantity <= 50):
+                                    basePrice = 29.63;
+                                    break;
+                                case (quantity <= 100):
+                                    basePrice = 23.39;
+                                    break;
+                                case (quantity <= 300):
+                                    basePrice = 20.27;
+                                    break;
+                                case (quantity <= 500):
+                                    basePrice = 18.71;
+                                    break;
+                            }
+                            break;
+                    }
+                    break;
+            }
+
+            // Obliczenia cen
+
+            const totalPrice = basePrice * quantity;
+            resultElement.innerHTML = `Całkowita cena: <strong>${totalPrice.toFixed(2)} zł (cena podana w netto)`;
+        }
+    </script>
+</div>
