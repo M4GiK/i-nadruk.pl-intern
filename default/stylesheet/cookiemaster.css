@@ -1,0 +1,44 @@
+/*
+* CookieMaster Module
+* CSS
+* Developed for OpenCart 2.x
+* Author Keyword Studio - http://www.keywordstudio.it
+* @01/2017
+* Under GNU GPL license v3.
+*/
+
+#cookiemaster {
+    margin: 0 auto 25px;
+    text-align: right;
+    position: relative;
+    padding-top: 21px;
+    display:none;
+}
+
+#cookiemaster #accept {
+    position: absolute;
+    right: 15px;
+    color: #0093ea;
+    border: 1px solid #0093ea;
+    border-radius: 2px;
+    background: #fff;
+    padding: 4px 9px 1px;
+    top: 50%;
+    cursor: pointer;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#cookiemastertext {
+    margin: 0 64px 0 0;
+    display: block;
+    line-height: 20px;
+    padding-top: 9px;
+}
+
+#cookiemaster #accept:hover {
+    background: #000000;
+    color: #FFF;
+}
