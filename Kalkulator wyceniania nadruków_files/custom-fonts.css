@@ -1,0 +1,125 @@
+@font-face {
+    font-family: proxima-nova;
+    src:
+            url('ProximaNova-Black.eot');
+    src:
+            url('ProximaNova-Black.woff2') format('woff2'),
+            url('ProximaNova-Black.eot?#iefix') format('embedded-opentype'),
+            url('ProximaNova-Black.woff') format('woff'),
+            url('ProximaNova-Black.ttf') format('truetype'),
+            url('ProximaNova-Black.svg#ProximaNova-Black') format('svg');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: proxima-nova;
+    src:
+            url('ProximaNova-BlackIt.eot');
+    src:
+            url('ProximaNova-BlackIt.woff2') format('woff2'),
+            url('ProximaNova-BlackIt.eot?#iefix') format('embedded-opentype'),
+            url('ProximaNova-BlackIt.woff') format('woff'),
+            url('ProximaNova-BlackIt.ttf') format('truetype'),
+            url('ProximaNova-BlackIt.svg#ProximaNova-BlackIt') format('svg');
+    font-weight: 900;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: proxima-nova;
+    src:
+            url('ProximaNova-Bold.eot');
+    src:
+            url('ProximaNova-Bold.woff2') format('woff2'),
+            url('ProximaNova-Bold.eot?#iefix') format('embedded-opentype'),
+            url('ProximaNova-Bold.woff') format('woff'),
+            url('ProximaNova-Bold.ttf') format('truetype'),
+            url('ProximaNova-Bold.svg#ProximaNova-Bold') format('svg');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: proxima-nova;
+    src:
+            url('ProximaNova-Extrabld.eot');
+    src:
+            url('ProximaNova-Extrabld.woff2') format('woff2'),
+            url('ProximaNova-Extrabld.eot?#iefix') format('embedded-opentype'),
+            url('ProximaNova-Extrabld.woff') format('woff'),
+            url('ProximaNova-Extrabld.ttf') format('truetype'),
+            url('ProximaNova-Extrabld.svg#ProximaNova-Extrabld') format('svg');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: proxima-nova;
+    src:
+            url('ProximaNovaT-Thin.eot');
+    src:
+            url('ProximaNovaT-Thin.woff2') format('woff2'),
+            url('ProximaNovaT-Thin.eot?#iefix') format('embedded-opentype'),
+            url('ProximaNovaT-Thin.woff') format('woff'),
+            url('ProximaNovaT-Thin.ttf') format('truetype'),
+            url('ProximaNovaT-Thin.svg#ProximaNovaT-Thin') format('svg');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: proxima-nova;
+    src:
+            url('ProximaNova-Regular.eot');
+    src:
+            url('ProximaNova-Regular.woff2') format('woff2'),
+            url('ProximaNova-Regular.eot?#iefix') format('embedded-opentype'),
+            url('ProximaNova-Regular.woff') format('woff'),
+            url('ProximaNova-Regular.ttf') format('truetype'),
+            url('ProximaNova-Regular.svg#ProximaNova-Regular') format('svg');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: proxima-nova;
+    src:
+            url('ProximaNova-RegularIt.eot');
+    src:
+            url('ProximaNova-RegularIt.woff2') format('woff2'),
+            url('ProximaNova-RegularIt.eot?#iefix') format('embedded-opentype'),
+            url('ProximaNova-RegularIt.woff') format('woff'),
+            url('ProximaNova-RegularIt.ttf') format('truetype'),
+            url('ProximaNova-RegularIt.svg#ProximaNova-RegularIt') format('svg');
+    font-weight: 400;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: proxima-nova;
+    src:
+            url('ProximaNova-Light.eot');
+    src:
+            url('ProximaNova-Light.woff2') format('woff2'),
+            url('ProximaNova-Light.eot?#iefix') format('embedded-opentype'),
+            url('ProximaNova-Light.woff') format('woff'),
+            url('ProximaNova-Light.ttf') format('truetype'),
+            url('ProximaNova-Light.svg#ProximaNova-Light') format('svg');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: proxima-nova;
+    src:
+            url('ProximaNova-Medium.eot');
+    src:
+            url('ProximaNova-Medium.woff2') format('woff2'),
+            url('ProximaNova-Medium.eot?#iefix') format('embedded-opentype'),
+            url('ProximaNova-Medium.woff') format('woff'),
+            url('ProximaNova-Medium.ttf') format('truetype'),
+            url('ProximaNova-Medium.svg#ProximaNova-Medium') format('svg');
+    font-weight: 500;
+    font-style: normal;
+}
