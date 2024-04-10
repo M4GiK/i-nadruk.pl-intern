@@ -1,24 +1,4 @@
-nav {
-    background-color: red;
-    overflow: hidden;
-}
-nav ul {
-    list-style-type: none;
-    padding: 0;
-    text-align: center;
-}
-nav ul li {
-    display: inline;
-}
-nav ul li a {
-    display: inline-block;
-    color: gray;
-    text-decoration: none;
-    padding: 14px 16px;
-}
-nav ul li a:hover {
-    background-color: red;
-}
+
 .flexFlock {
     border-top-left-radius: 10px;
     border-bottom-right-radius: 0px;
@@ -39,13 +19,106 @@ nav ul li a:hover {
 }
 
 .calc-buttons {
+    border: 1px solid #cccccc; 
     -moz-border-radius: 0px;
-    -webkit-border-radius: 3px 3px 0px 0px;
-    border-radius: 3px 3px 0px 0px; 
-    background-color: red;
+    -webkit-border-radius: 15px 15px 0px 0px;
+    border-radius: 15px 15px 0px 0px; 
+    background-color: #f5f5f5;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     flex-direction: row;
     justify-content: center;
 }
+
+.tab-button  {
+    
+}
+
+.calc-buttons {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    padding: 20px;
+    flex-wrap: wrap;
+    align-content: stretch;
+    justify-content: space-evenly;
+}
+
+.vertical-line {
+    border-right: 1px solid #cccccc;
+    height: 50px;
+    margin: -25px 10px;
+}
+
+.vertical-line1 {
+    border-right: 1px solid #cccccc;
+    height: 50px;
+    margin: -25px 10px;
+}
+
+#calculator > input[type="checkbox"] {
+    -webkit-appearance: none;
+    appearance: none;
+
+    margin: 0;
+    font: inherit;
+    color: currentColor;
+    width: 1.15em;
+    height: 1.15em;
+    border: 0.15em solid currentColor;
+    border-radius: 0.15em;
+    transform: translateY(-0.075em);
+}
+
+#calculator > input[type="checkbox"]::before {
+    content:'✓' display none;  
+    width: 0.65em;
+    height: 0.65em;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+  }
+  
+#calculator >  input[type="checkbox"]:checked::before {
+    transform: scale(1);
+  }
+
+#calculator > .checkbox-calculator:hover{
+    -ms-transform: scale(1.1); /* IE */
+    -moz-transform: scale(1.1); /* FF */
+    -webkit-transform: scale(1.1); /* Safari and Chrome */
+    -o-transform: scale(1.1); /* Opera */
+    transform: scale(1.1);
+    transition-duration: 250ms;
+
+}
+
+
+#calculator > input[type="checkbox"].checkbox-calculator:checked{
+    background-color: #ffffff;
+    display:absolute;
+    color: red;
+}
+
+#calculator > input[type="checkbox"].checkbox-calculator::before{
+    content:' ✓' ;  
+    position: absolute;
+    top: -3px;
+    left: 2px;
+}
+.kalkulatorRamka__content{
+    font-size: 14px;
+	padding: 20px;
+	
+	border-left: 1px solid #cccccc;
+	border-right: 1px solid #cccccc;
+	border-bottom: 1px solid #cccccc;
+	
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+.kalkulatorRamka__fS{
+    font-size: 24px;
+    padding: 6px 1%;
+}
+

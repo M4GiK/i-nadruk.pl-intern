@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wybór kalkulatora</title>
   <link rel="stylesheet" type="text/css" href="style1.css">
+  <link rel="stylesheet" type="text/css" href="kalkulator.css">
   <link rel="stylesheet" type="text/css" href="tt_presiden1/stylesheet/opentheme/categorytabslider.css">
   <link rel="stylesheet" type="text/css" href="tt_presiden1/stylesheet/stylesheet.css">
   <link rel="stylesheet" type="text/css" href="tt_presiden1/stylesheet/opentheme/css/animate.css">
@@ -32,14 +33,16 @@
   <link rel="stylesheet" type="text/css" href="default/stylesheet/opentheme/producttab.css">
   <link rel="stylesheet" type="text/css" href="default/stylesheet/opentheme/vermegamenu/css/ocvermegamenu.css">
   <link rel="stylesheet" type="text/css" href="default/stylesheet/stylesheet.css">
-  <link rel="stylesheet" type="text/css" href="kalkulator.css">
+  
 </head>
 <body>
 <div id="tlo">
   <h2 class="center">Wybierz kalkulator:</h2>
   <div class="calc-buttons">
     <a id="flexFlock" class="tab-button active" position= "250px 300px" class="button" data-tab-target="#kalkulatorFlex"onclick="otworzKalkulator('kalkulatorFlex')">Kalkulator Flex i Flock</a>
+    <div class="vertical-line"></div>
     <a id="DFT" class="tab-button active" position= "250px 300px" class="button" data-tab-target="#kalkulatorDTF"onclick="otworzKalkulator('kalkulatorDTF')">Kalkulator DTF</a>
+    <div class="vertical-line1"></div>
     <a id="Haft" class="tab-button active" position= "250px 300px" class="button" data-tab-target="#kalkulatorHaft"onclick="otworzKalkulator('kalkulatorHaft')">Kalkulator Haftu</a>
   </div>
 
@@ -67,7 +70,7 @@
 
         <label for="colors">Ilość kolorów:</label><br>
         <input type="checkbox" id="color1" name="colors" value="1" onchange="handleCheckboxChange(this)">
-        <label for="color1">1 Kolor</label><br>
+        <label for="color1">1 Kolor</label><br>gfgf
         <input type="checkbox" id="color2" name="colors" value="2" onchange="handleCheckboxChange(this)">
         <label for="color2">2 Kolory</label><br>
         <input type="checkbox" id="color3" name="colors" value="3" onchange="handleCheckboxChange(this)">
