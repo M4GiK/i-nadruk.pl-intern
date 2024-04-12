@@ -745,26 +745,34 @@ var CUSTOMMENU_POPUP_TOP_OFFSET = 70
         <!-- Miejsce na wyświetlenie kalkulatora -->
         <div id="kalkulatorFlex" style="display: none;">
           <div id="onclick">Kalkulator Flex i Flock</div>
-  
+          <h1><br></h1>
+  <div class="style-sztuki">
+          <label for="quantity">Ilość sztuk:</label>
+              <input type="number" id="quantity" min="1" max="500" value="1" required pattern="\d+" onchange="calculatePrice()" style=" width: 28%;margin-left: 38px;position: absolute;">
+  </div>
   
           <div id="tlo" style="width: 750px; height: auto; margin-left: 0px; margin-top: 0px;">
-            <h1><br></h1>
             <div id="calculator">
+              <div class="style-wydruk">
               <label for="printType">Typ wydruku:</label>
-              <select id="printType" onchange="calculatePrice()">
+              <select id="printType" onchange="calculatePrice()"style="width: 28%; margin-left: 25px; position: absolute;">
                 <option value="Flex">Flex</option>
                 <option value="Flock">Flock</option> <!-- Nowa opcja -->
-              </select><br>
+              </select>
+              </div>
   
+            <div class="style-rozmiar">
               <label for="size">Rozmiar:</label>
-              <select id="size" onchange="calculatePrice()">
+              <select id="size" onchange="calculatePrice()"style="width: 28%; margin-left: 56px; position: absolute; margin-top: 3px;">
                 <option value="A7">A7 100x75mm</option>
                 <option value="A6">A6 100x150mm</option>
                 <option value="A5">A5 150x200mm</option>
                 <option value="A4">A4 290x200mm</option>
                 <option value="A3">A3 290x400mm</option>
-              </select><br>
-  
+              </select>
+            </div>
+
+          <div class="style-kolory">
               <label for="colors">Ilość kolorów:</label><br>
               <input type="checkbox" class="checkbox-calculator" id="color1" name="colors" value="1" onchange="handleCheckboxChange(this)">
               <label for="color1">1 Kolor</label><br>
@@ -773,12 +781,11 @@ var CUSTOMMENU_POPUP_TOP_OFFSET = 70
               <input type="checkbox" class="checkbox-calculator" dadadadadid="color3" name="colors" value="3" onchange="handleCheckboxChange(this)">
               <label for="color3">3 Kolory</label><br>
   
-              <label for="quantity">Ilość sztuk:</label>
-              <input type="number" id="quantity" min="1" max="500" value="1" required pattern="\d+" onchange="calculatePrice()"><br>
-  
+
               <div id="result">Wybierz ilość kolorów, aby obliczyć cenę.</div>
             </div>
-  
+          </div>
+
             <script>
               // Pobierz pola wyboru
               // const sizeSelect = document.getElementById("size");
