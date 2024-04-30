@@ -53,7 +53,7 @@
     margin: -25px 10px;
 }
 
-#calculator > input[type="checkbox"] {
+.checkbox-list > input[type="checkbox"] {
     -webkit-appearance: none;
     appearance: none;
 
@@ -67,7 +67,7 @@
     transform: translateY(-0.075em);
 }
 
-#calculator > input[type="checkbox"]::before {
+.checkbox-list > input[type="checkbox"]::before {
     content:'✓' display none;  
     width: 0.65em;
     height: 0.65em;
@@ -75,11 +75,11 @@
     transition: 120ms transform ease-in-out;
   }
   
-#calculator >  input[type="checkbox"]:checked::before {
+.checkbox-list >  input[type="checkbox"]:checked::before {
     transform: scale(1);
   }
 
-#calculator > .checkbox-calculator:hover{
+.checkbox-list > .checkbox-calculator:hover{
     -ms-transform: scale(1.1); /* IE */
     -moz-transform: scale(1.1); /* FF */
     -webkit-transform: scale(1.1); /* Safari and Chrome */
@@ -90,13 +90,13 @@
 }
 
 
-#calculator > input[type="checkbox"].checkbox-calculator:checked{
+.checkbox-list > input[type="checkbox"].checkbox-calculator:checked{
     background-color: #ffffff;
     display:absolute;
     color: red;
 }
 
-#calculator > input[type="checkbox"].checkbox-calculator::before{
+.checkbox-list > input[type="checkbox"].checkbox-calculator::before{
     content:' ✓';
     position: absolute;
     top: -3px;
@@ -121,7 +121,7 @@
     position: 200px 300px;
 }
 
-#calculator {
+.checkbox-list {
     display: flex;
     flex-wrap: wrap;
     gap: 2%;
@@ -137,9 +137,4 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-}
-.style-kolory{
-    margin-bottom: 10px;
-    margin-left: 0px;
-    margin-right: 440px;
 }

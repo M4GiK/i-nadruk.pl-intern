@@ -30,7 +30,7 @@
                     'catalog/view/theme/tt_presiden1/stylesheet/opentheme/fonts/custom-fonts.css'
                 ]
             }
-        });dadadadad
+        });
     </script>
       <!-- <link rel="stylesheet" type="text/css" href="style1.css"> -->
      <link rel="stylesheet" type="text/css" href="kalkulator.css"> 
@@ -732,11 +732,11 @@ var CUSTOMMENU_POPUP_TOP_OFFSET = 70
       <div id="tlo">
         <h2 class="center">Wybierz kalkulator:</h2>
         <div class="calc-buttons">
-          <a id="flexFlock" class="tab-button active" position= "250px 300px" class="button" data-tab-target="#kalkulatorFlex"onclick="otworzKalkulator('kalkulatorFlex')">Kalkulator Flex i Flock</a>
+          <a id="flexFlock" class="tab-button active" position= "250px 300px" class="button" data-tab-target="#kalkulatorFlex" onclick="otworzKalkulator('kalkulatorFlex')">Kalkulator Flex i Flock</a>
           <div class="vertical-line"></div>
-          <a id="DFT" class="tab-button active" position= "250px 300px" class="button" data-tab-target="#kalkulatorDTF"onclick="otworzKalkulator('kalkulatorDTF')">Kalkulator DTF</a>
+          <a id="DFT" class="tab-button active" position= "250px 300px" class="button" data-tab-target="#kalkulatorDTF" onclick="otworzKalkulator('kalkulatorDTF')">Kalkulator DTF</a>
           <div class="vertical-line1"></div>
-          <a id="Haft" class="tab-button active" position= "250px 300px" class="button" data-tab-target="#kalkulatorHaft"onclick="otworzKalkulator('kalkulatorHaft')">Kalkulator Haftu</a>
+          <a id="Haft" class="tab-button active" position= "250px 300px" class="button" data-tab-target="#kalkulatorHaft" onclick="otworzKalkulator('kalkulatorHaft')">Kalkulator Haftu</a>
         </div>
         <div class="kalkulatorRamka__content">
           <div class="kalkulatorRamka__fS">
@@ -744,12 +744,11 @@ var CUSTOMMENU_POPUP_TOP_OFFSET = 70
   
         <!-- Miejsce na wyświetlenie kalkulatora -->
         <div id="kalkulatorFlex" style="display: none;">
-          <div id="onclick">Kalkulator Flex i Flock</div>
-          <h1><br></h1>
-  <div class="style-sztuki">
+          <h3>Kalkulator Flex i Flock</h3>
+          <div class="style-sztuki">
           <label for="quantity">Ilość sztuk:</label>
-              <input type="number" id="quantity" min="1" max="500" value="1" required pattern="\d+" onchange="calculatePrice()" style=" width: 28%;margin-left: 38px;position: absolute;">
-  </div>
+              <input type="number" id="quantity" min="1" max="500" value="1" required pattern="\d+" onchange="calculatePrice()" style=" width: 30%; margin-left: 34px; margin-bottom: 6px;">
+          </div>
   
           <div id="tlo" style="width: 750px; height: auto; margin-left: 0px; margin-top: 0px;">
             <div id="calculator">
@@ -769,16 +768,16 @@ var CUSTOMMENU_POPUP_TOP_OFFSET = 70
                 <option value="A5">A5 150x200mm</option>
                 <option value="A4">A4 290x200mm</option>
                 <option value="A3">A3 290x400mm</option>
-              </select>
+                </select> 
             </div>
 
-          <div class="style-kolory">
+            <div class="checkbox-list" iv="" style="margin-top: 10px;">
               <label for="colors">Ilość kolorów:</label><br>
               <input type="checkbox" class="checkbox-calculator" id="color1" name="colors" value="1" onchange="handleCheckboxChange(this)">
               <label for="color1">1 Kolor</label><br>
               <input type="checkbox" class="checkbox-calculator" id="color2" name="colors" value="2" onchange="handleCheckboxChange(this)">
               <label for="color2">2 Kolory</label><br>
-              <input type="checkbox" class="checkbox-calculator" dadadadadid="color3" name="colors" value="3" onchange="handleCheckboxChange(this)">
+              <input type="checkbox" class="checkbox-calculator" id="color3" name="colors" value="3" onchange="handleCheckboxChange(this)">
               <label for="color3">3 Kolory</label><br>
   
 
@@ -1112,18 +1111,19 @@ var CUSTOMMENU_POPUP_TOP_OFFSET = 70
               }
             </script>
           </div>
-          <h3>Kalkulator Flex i Flock</h3>
           <!-- Dodaj formularz lub inne elementy -->
         </div>
         <div id="kalkulatorDTF" style="display: none;">
-  
-          <div id="tlo" style="width: 1001 px; height: auto; margin-left: 0px; margin-top: 0px;">
-            <h1><br></h1>
+          <h3>Kalkulator DTF</h3>
+          <div id="tlo" style="width: 750px; height: auto; margin-left: 0px; margin-top: 0px;">
+
             <div id="calculatorDTF">
-              </select><br>
-  
+            </select><br>
+            <label htmlFor="quantity">Ilość sztuk:</label>
+            <input type="number" id="quantityDTF" min="1" max="500" value="1" onChange="calculatePriceDTF()" style="width: 30%; margin-left: 34px; margin-bottom: 6px;"><br>
+
               <label htmlFor="size">Rozmiar:</label>
-              <select id="sizeDTF" onChange="calculatePrice()">
+              <select id="sizeDTF" onChange="calculatePrice()" style="width: 30%; margin-left: 51px; margin-bottom: 6px;">
                 <option value="A7">A7 100x75mm</option>
                 <option value="A6">A6 100x150mm</option>
                 <option value="A5">A5 150x200mm</option>
@@ -1131,11 +1131,9 @@ var CUSTOMMENU_POPUP_TOP_OFFSET = 70
                 <option value="A3">A3 290x400mm</option>
               </select><br>
   
-              <label htmlFor="quantity">Ilość sztuk:</label>
-              <input type="number" id="quantityDTF" min="1" value="1" onChange="calculatePriceDTF()"><br>
-  
+              
               <!-- Dodajemy element, gdzie będzie wyświetlany wynik -->
-              <div id="resultDTF"></div>
+              <div id="resultDTF">Wybierz ilość sztuk oraz rozmiar by wyświetlić cenę.</div>
             </div>
   
             <script>
@@ -1288,27 +1286,28 @@ var CUSTOMMENU_POPUP_TOP_OFFSET = 70
               }
             </script>
           </div>
-          <h3>Kalkulator DTF</h3>
           <!-- Dodaj formularz lub inne elementy -->
         </div>
-        <div id="kalkulatorHaft" style="display: none;  margin-left: 0px; margin-top: 0px;">
-          <h1><br></h1>
+        <div id="kalkulatorHaft" style="display: none;">
+          <h3>Kalkulator Haftu</h3><br>
           <form id="haftForm">
-            <label for="powierzchnia">Powierzchnia haftu (cm<sup>2</sup>): </label>
-            <input type="number" id="powierzchnia" name="powierzchnia" value="1" max="900" required><br><br>
-  
             <label for="iloscSztuk">Ilość sztuk: </label>
-            <input type="number" id="iloscSztuk" name="iloscSztuk" value="1" required><br><br>
+            <input type="number" id="iloscSztuk" name="iloscSztuk" value="1" min="1" max="500" required="" style="width: 20%; margin-left: 150px; margin-bottom: 6px;"><br>
+
+            <label for="wysokosc"> Wysokość (cm): </label>
+            <input type="number" id="wysokosc" name="wysokosc" value="1" min="1" max="500" required="" style="width: 20%; margin-left: 116px; margin-bottom: 6px;"><br>
+  
+            <label for="dlugosc"> Długość (cm): </label>
+            <input type="number" id="dlugosc" name="dlugosc" value="1" min="1" max="500" required="" style="width: 20%; margin-left: 130px; margin-bottom: 6px;"><br>
   
             <label for="wypelnienie">Rodzaj wypełnienia: </label>
-            <select id="wypelnienie" name="wypelnienie" required>
+            <select id="wypelnienie" name="wypelnienie" required="" style="width: 20%; margin-left: 87px;">
               <option value="do 40% powierzchni">Do 40% powierzchni</option>
               <option value="od 41-70%">Od 41-70%</option>
               <option value="powyzej 71%">Powyżej 71%</option>
             </select><br><br>
           </form>
-  
-          <div id="wynik"></div>
+          <div id="wynik">Wybierz ilość sztuk oraz powierzchnię aby zobaczyć cenę.</div>
   
   
   
@@ -1317,8 +1316,16 @@ var CUSTOMMENU_POPUP_TOP_OFFSET = 70
             // Funkcja obliczCene() wywoływana przy zmianie wartości w formularzu
             document.getElementById("haftForm").addEventListener("input", obliczCene);
   
+            const PowierzchniaWypelnienia={
+                MINIMUM:'MINIMUM',
+                SREDNIO:'SREDNIO',
+                MAXIMUM:'MAXIMUM'
+              };
+
             function obliczCene() {
-              const powierzchnia = parseInt(document.getElementById("powierzchnia").value);
+              const wysokosc = parseInt(document.getElementById("wysokosc").value);
+              const dlugosc = parseInt(document.getElementById("dlugosc").value);
+              const powierzchnia = wysokosc * dlugosc;
               const iloscSztuk = parseInt(document.getElementById("iloscSztuk").value);
               const wypelnienie = document.getElementById("wypelnienie").value;
   
@@ -1344,28 +1351,230 @@ var CUSTOMMENU_POPUP_TOP_OFFSET = 70
               } else {
                 cenaSztuki = 4.4;
               }
-  
-              let cenaWypelnienia;
+            
+              let powierzchniaCm2 = wysokosc * dlugosc;              
+              let rodzajWypelnienia;
               switch (wypelnienie) {
                 case "do 40% powierzchni":
-                  cenaWypelnienia = 1.0;
+                  rodzajWypelnienia = PowierzchniaWypelnienia.MINIMUM;
                   break;
                 case "od 41-70%":
-                  cenaWypelnienia = 1.5;
+                  rodzajWypelnienia = PowierzchniaWypelnienia.SREDNIO;
                   break;
                 case "powyzej 71%":
-                  cenaWypelnienia = 2.0;
+                  rodzajWypelnienia = PowierzchniaWypelnienia.MAXIMUM;
                   break;
                 default:
                   document.getElementById("wynik").innerHTML = "Nieprawidłowe wypełnienie";
                   return;
               }
+
+              let iloscSciegow = zwrocWartoscSciegow(rodzajWypelnienia, powierzchniaCm2);
   
-              const cenaCalkowita = powierzchnia * cenaZaCm2 * cenaWypelnienia * iloscSztuk;
-              document.getElementById("wynik").innerHTML = `Cena za haft: ${cenaCalkowita.toFixed(2)} PLN`;
+              if(iloscSciegow !== null) {
+                // TODO dalesze wyliczenia
+                const cenaZaSztuke = wyliczCene(iloscSztuk, iloscSciegow);
+
+              document.getElementById("wynik").innerHTML = `Cena za haft: ${cenaZaSztuke.toFixed(2)} PLN`;
+              } else {
+                document.getElementById("wynik").innerHTML = `Prosimy o kontakt w celu indywidualnej wyceny.`;
+              }
+            }
+            function wyliczCene(iloscSztuk, iloscSciegow) {
+              let cenaSztuki = null;
+
+              if ( iloscSciegow > 0 && iloscSciegow <= 3000 && iloscSztuk > 0 && iloscSztuk <= 2 ){
+                cenaSztuki = 27.5;
+              } else if ( iloscSciegow > 0 && iloscSciegow <= 3000 && iloscSztuk > 2 && iloscSztuk <= 6 ){
+                cenaSztuki = 16.5;
+              } else if ( iloscSciegow > 0 && iloscSciegow <= 3000 && iloscSztuk > 6 && iloscSztuk <= 12 ){
+                cenaSztuki = 14.5;
+              } else if ( iloscSciegow > 0 && iloscSciegow <= 3000 && iloscSztuk > 12 && iloscSztuk <= 24 ){
+                cenaSztuki = 12;
+              } else if ( iloscSciegow > 0 && iloscSciegow <= 3000 && iloscSztuk > 24 && iloscSztuk <= 50 ){
+                cenaSztuki = 8.8;
+              } else if ( iloscSciegow > 0 && iloscSciegow <= 3000 && iloscSztuk > 50 && iloscSztuk <= 100 ){
+                cenaSztuki = 6.6;
+              } else if ( iloscSciegow > 0 && iloscSciegow <= 3000 && iloscSztuk > 100 && iloscSztuk <= 300 ){
+                cenaSztuki = 5.5;
+              } else if ( iloscSciegow > 0 && iloscSciegow <= 3000 && iloscSztuk > 300 && iloscSztuk <= 500 ){
+                cenaSztuki = 4.4;
+              } else if ( iloscSciegow > 3000 && iloscSciegow <= 5000 && iloscSztuk > 0 && iloscSztuk <= 2 ){
+                cenaSztuki = 27.5;
+              } else if ( iloscSciegow > 3000 && iloscSciegow <= 5000 && iloscSztuk > 2 && iloscSztuk <= 6 ){
+                cenaSztuki = 16.5;
+              } else if ( iloscSciegow > 3000 && iloscSciegow <= 5000 && iloscSztuk > 6 && iloscSztuk <= 12 ){
+                cenaSztuki = 14.5;
+              } else if ( iloscSciegow > 3000 && iloscSciegow <= 5000 && iloscSztuk > 12 && iloscSztuk <= 24 ){
+                cenaSztuki = 13;
+              } else if ( iloscSciegow > 3000 && iloscSciegow <= 5000 && iloscSztuk > 24 && iloscSztuk <= 50 ){
+                cenaSztuki = 11;
+              } else if ( iloscSciegow > 3000 && iloscSciegow <= 5000 && iloscSztuk > 50 && iloscSztuk <= 100 ){
+                cenaSztuki = 8.8;
+              } else if ( iloscSciegow > 3000 && iloscSciegow <= 5000 && iloscSztuk > 100 && iloscSztuk <= 300 ){
+                cenaSztuki = 7.5;
+              } else if ( iloscSciegow > 3000 && iloscSciegow <= 5000 && iloscSztuk > 300 && iloscSztuk <= 500 ){
+                cenaSztuki = 5;
+              } else if ( iloscSciegow > 5000 && iloscSciegow <= 7000 && iloscSztuk > 0 && iloscSztuk <= 2 ){
+                cenaSztuki = 27.5;
+              } else if ( iloscSciegow > 5000 && iloscSciegow <= 7000 && iloscSztuk > 2 && iloscSztuk <= 6 ){
+                cenaSztuki = 16.5;
+              } else if ( iloscSciegow > 5000 && iloscSciegow <= 7000 && iloscSztuk > 6 && iloscSztuk <= 12 ){
+                cenaSztuki = 15.4;
+              } else if ( iloscSciegow > 5000 && iloscSciegow <= 7000 && iloscSztuk > 12 && iloscSztuk <= 24 ){
+                cenaSztuki = 14.5;
+              } else if ( iloscSciegow > 5000 && iloscSciegow <= 7000 && iloscSztuk > 24 && iloscSztuk <= 50 ){
+                cenaSztuki = 13;
+              } else if ( iloscSciegow > 5000 && iloscSciegow <= 7000 && iloscSztuk > 50 && iloscSztuk <= 100 ){
+                cenaSztuki = 11;
+              } else if ( iloscSciegow > 5000 && iloscSciegow <= 7000 && iloscSztuk > 100 && iloscSztuk <= 500 ){
+                cenaSztuki = 'Prosimy o kontakt do wyceny indywidualnej' ;
+              } else if ( iloscSciegow > 7000 && iloscSciegow <= 10000 && iloscSztuk > 0 && iloscSztuk <= 2 ){
+                cenaSztuki = 35.2;
+              } else if ( iloscSciegow > 7000 && iloscSciegow <= 10000 && iloscSztuk > 2 && iloscSztuk <= 6 ){
+                cenaSztuki = 22;
+              } else if ( iloscSciegow > 7000 && iloscSciegow <= 10000 && iloscSztuk > 6 && iloscSztuk <= 12 ){
+                cenaSztuki = 16.5;
+              } else if ( iloscSciegow > 7000 && iloscSciegow <= 10000 && iloscSztuk > 12 && iloscSztuk <= 24 ){
+                cenaSztuki = 15.4;
+              } else if ( iloscSciegow > 7000 && iloscSciegow <= 10000 && iloscSztuk > 24 && iloscSztuk <= 50 ){
+                cenaSztuki = 14.5;
+              } else if ( iloscSciegow > 7000 && iloscSciegow <= 10000 && iloscSztuk > 50 && iloscSztuk <= 100 ){
+                cenaSztuki = 12;
+              } else if ( iloscSciegow > 7000 && iloscSciegow <= 10000 && iloscSztuk > 100 && iloscSztuk <= 500 ){
+                cenaSztuki = 'Prosimy o kontakt do wyceny indywidualnej' ;
+              } else if ( iloscSciegow > 10000 && iloscSciegow <= 12000 && iloscSztuk > 0 && iloscSztuk <= 2 ){
+                cenaSztuki = 38.5;
+              } else if ( iloscSciegow > 10000 && iloscSciegow <= 12000 && iloscSztuk > 2 && iloscSztuk <= 6 ){
+                cenaSztuki = 25.5;
+              } else if ( iloscSciegow > 10000 && iloscSciegow <= 12000 && iloscSztuk > 6 && iloscSztuk <= 12 ){
+                cenaSztuki = 19.4;
+              } else if ( iloscSciegow > 10000 && iloscSciegow <= 12000 && iloscSztuk > 12 && iloscSztuk <= 24 ){
+                cenaSztuki = 18.4;
+              } else if ( iloscSciegow > 10000 && iloscSciegow <= 12000 && iloscSztuk > 24 && iloscSztuk <= 50 ){
+                cenaSztuki = 16.5;
+              } else if ( iloscSciegow > 10000 && iloscSciegow <= 12000 && iloscSztuk > 50 && iloscSztuk <= 100 ){
+                cenaSztuki = 15.4;
+              } else if ( iloscSciegow > 10000 && iloscSciegow <= 12000 && iloscSztuk > 100 && iloscSztuk <= 500 ){
+                cenaSztuki = 'Prosimy o kontakt do wyceny indywidualnej' ;
+              } else if ( iloscSciegow > 12000 && iloscSciegow <= 15000 && iloscSztuk > 0 && iloscSztuk <= 2 ){
+                cenaSztuki = 44;
+              } else if ( iloscSciegow > 12000 && iloscSciegow <= 15000 && iloscSztuk > 2 && iloscSztuk <= 6 ){
+                cenaSztuki = 30.5;
+              } else if ( iloscSciegow > 12000 && iloscSciegow <= 15000 && iloscSztuk > 6 && iloscSztuk <= 12 ){
+                cenaSztuki = 22.6;
+              } else if ( iloscSciegow > 12000 && iloscSciegow <= 15000 && iloscSztuk > 12 && iloscSztuk <= 24 ){
+                cenaSztuki = 21.5;
+              } else if ( iloscSciegow > 12000 && iloscSciegow <= 15000 && iloscSztuk > 24 && iloscSztuk <= 50 ){
+                cenaSztuki = 19.8;
+              } else if ( iloscSciegow > 12000 && iloscSciegow <= 15000 && iloscSztuk > 50 && iloscSztuk <= 100 ){
+                cenaSztuki = 18.7;
+              } else if ( iloscSciegow > 12000 && iloscSciegow <= 15000 && iloscSztuk > 100 && iloscSztuk <= 500 ){
+                cenaSztuki = 'Prosimy o kontakt do wyceny indywidualnej' ;
+              } else if ( iloscSciegow > 15000 && iloscSciegow <= 25000 && iloscSztuk > 0 && iloscSztuk <= 2 ){
+                cenaSztuki = 55;
+              } else if ( iloscSciegow > 15000 && iloscSciegow <= 25000 && iloscSztuk > 2 && iloscSztuk <= 6 ){
+                cenaSztuki = 41.8;
+              } else if ( iloscSciegow > 15000 && iloscSciegow <= 25000 && iloscSztuk > 6 && iloscSztuk <= 12 ){
+                cenaSztuki = 30.8;
+              } else if ( iloscSciegow > 15000 && iloscSciegow <= 25000 && iloscSztuk > 12 && iloscSztuk <= 24 ){
+                cenaSztuki = 29.7;
+              } else if ( iloscSciegow > 15000 && iloscSciegow <= 25000 && iloscSztuk > 24 && iloscSztuk <= 50 ){
+                cenaSztuki = 28.6;
+              } else if ( iloscSciegow > 15000 && iloscSciegow <= 25000 && iloscSztuk > 50 && iloscSztuk <= 100 ){
+                cenaSztuki = 27.5;
+              } else if ( iloscSciegow > 15000 && iloscSciegow <= 25000 && iloscSztuk > 100 && iloscSztuk <= 500 ){
+                cenaSztuki = 'Prosimy o kontakt do wyceny indywidualnej' ;
+              } else if ( iloscSciegow > 25000 && iloscSciegow <= 30000 && iloscSztuk > 0 && iloscSztuk <= 2 ){
+                cenaSztuki = 66;
+              } else if ( iloscSciegow > 25000 && iloscSciegow <= 30000 && iloscSztuk > 2 && iloscSztuk <= 6 ){
+                cenaSztuki = 46.8;
+              } else if ( iloscSciegow > 25000 && iloscSciegow <= 30000 && iloscSztuk > 6 && iloscSztuk <= 12 ){
+                cenaSztuki = 36.5;
+              } else if ( iloscSciegow > 25000 && iloscSciegow <= 30000 && iloscSztuk > 12 && iloscSztuk <= 24 ){
+                cenaSztuki = 35.5;
+              } else if ( iloscSciegow > 25000 && iloscSciegow <= 30000 && iloscSztuk > 24 && iloscSztuk <= 50 ){
+                cenaSztuki = 34.5;
+              } else if ( iloscSciegow > 25000 && iloscSciegow <= 30000 && iloscSztuk > 50 && iloscSztuk <= 100 ){
+                cenaSztuki = 33;
+              } else if ( iloscSciegow > 25000 && iloscSciegow <= 30000 && iloscSztuk > 100 && iloscSztuk <= 500 ){
+                cenaSztuki = 'Prosimy o kontakt do wyceny indywidualnej' ;
+              }
+              
+              
+              return cenaSztuki;
+            }
+
+            function zwrocWartoscSciegow(rodzajWypelnienia, powierzchniaCm2) {
+              let iloscSciegow = 0;
+              
+              if (rodzajWypelnienia === PowierzchniaWypelnienia.MINIMUM && powierzchniaCm2 > 0 && powierzchniaCm2 <= 9) {
+                iloscSciegow = 3000;
+              } else if (rodzajWypelnienia ===PowierzchniaWypelnienia.SREDNIO && powierzchniaCm2 > 0 && powierzchniaCm2 <= 9) {
+                iloscSciegow = 4000;
+              } else if (rodzajWypelnienia ===PowierzchniaWypelnienia.MAXIMUM && powierzchniaCm2 > 0 && powierzchniaCm2 <= 9) {
+                iloscSciegow = 5000;
+              } else if (rodzajWypelnienia === PowierzchniaWypelnienia.MINIMUM && powierzchniaCm2 > 9 && powierzchniaCm2 <= 16) {
+                iloscSciegow = 3000;
+              } else if (rodzajWypelnienia === PowierzchniaWypelnienia.SREDNIO && powierzchniaCm2 > 9 && powierzchniaCm2 <= 16) {
+                iloscSciegow = 5000;
+              } else if (rodzajWypelnienia === PowierzchniaWypelnienia.MAXIMUM && powierzchniaCm2 > 9 && powierzchniaCm2 <= 16) {
+                iloscSciegow = 8000;
+              } else if (rodzajWypelnienia === PowierzchniaWypelnienia.MINIMUM && powierzchniaCm2 > 16 && powierzchniaCm2 <= 25) {
+                iloscSciegow = 3000;
+              } else if (rodzajWypelnienia === PowierzchniaWypelnienia.SREDNIO && powierzchniaCm2 > 16 && powierzchniaCm2 <= 25) {
+                iloscSciegow = 6000;
+              } else if (rodzajWypelnienia === PowierzchniaWypelnienia.MAXIMUM && powierzchniaCm2 > 16 && powierzchniaCm2 <= 25) {
+                iloscSciegow = 9000;
+              } else if (rodzajWypelnienia === PowierzchniaWypelnienia.MINIMUM && powierzchniaCm2 > 25 && powierzchniaCm2 <= 36) {
+                iloscSciegow = 5000;
+              } else if (rodzajWypelnienia === PowierzchniaWypelnienia.SREDNIO && powierzchniaCm2 > 25 && powierzchniaCm2 <= 36) {
+                iloscSciegow = 7000;
+              } else if (rodzajWypelnienia === PowierzchniaWypelnienia.MAXIMUM && powierzchniaCm2 > 25 && powierzchniaCm2 <= 36) {
+                iloscSciegow = 12000;
+              } else if (rodzajWypelnienia === PowierzchniaWypelnienia.MINIMUM && powierzchniaCm2 > 36 && powierzchniaCm2 <= 49) {
+                iloscSciegow = 6000;  
+              } else if (rodzajWypelnienia === PowierzchniaWypelnienia.SREDNIO && powierzchniaCm2 > 36 && powierzchniaCm2 <= 49) {
+                iloscSciegow = 10000;
+              } else if (rodzajWypelnienia === PowierzchniaWypelnienia.MAXIMUM && powierzchniaCm2 > 36 && powierzchniaCm2 <= 49) {
+                iloscSciegow = 14000;
+              } else if (rodzajWypelnienia === PowierzchniaWypelnienia.MINIMUM && powierzchniaCm2 > 49 && powierzchniaCm2 <= 64) {
+                iloscSciegow = 6000;
+              } else if (rodzajWypelnienia === PowierzchniaWypelnienia.SREDNIO && powierzchniaCm2 > 49 && powierzchniaCm2 <= 64) {
+                iloscSciegow = 13000;
+              } else if (rodzajWypelnienia === PowierzchniaWypelnienia.MAXIMUM && powierzchniaCm2 > 49 && powierzchniaCm2 <= 64) {
+                iloscSciegow = 17000;
+              } else if (rodzajWypelnienia === PowierzchniaWypelnienia.MINIMUM && powierzchniaCm2 > 64 && powierzchniaCm2 <= 91) {
+                iloscSciegow = 6000;
+              } else if (rodzajWypelnienia === PowierzchniaWypelnienia.SREDNIO && powierzchniaCm2 > 64 && powierzchniaCm2 <= 91) {
+                iloscSciegow = 15000;
+              } else if (rodzajWypelnienia === PowierzchniaWypelnienia.MAXIMUM && powierzchniaCm2 > 64 && powierzchniaCm2 <= 91) {
+                iloscSciegow = 20000;
+              } else if (rodzajWypelnienia === PowierzchniaWypelnienia.MINIMUM && powierzchniaCm2 > 91 && powierzchniaCm2 <= 100) {
+                iloscSciegow = 7000;
+              } else if (rodzajWypelnienia === PowierzchniaWypelnienia.SREDNIO && powierzchniaCm2 > 91 && powierzchniaCm2 <= 100) {
+                iloscSciegow = 17000;
+              } else if (rodzajWypelnienia === PowierzchniaWypelnienia.MAXIMUM && powierzchniaCm2 > 91 && powierzchniaCm2 <= 100) {
+                iloscSciegow = 22000;
+              } else if (rodzajWypelnienia === PowierzchniaWypelnienia.MINIMUM && powierzchniaCm2 > 100 && powierzchniaCm2 <= 121) {
+                iloscSciegow = 7000;
+              } else if (rodzajWypelnienia === PowierzchniaWypelnienia.SREDNIO && powierzchniaCm2 > 100 && powierzchniaCm2 <= 121) {
+                iloscSciegow = 20000;
+              } else if (rodzajWypelnienia === PowierzchniaWypelnienia.MAXIMUM && powierzchniaCm2 > 100 && powierzchniaCm2 <= 121) {
+                iloscSciegow = 25000;
+              } else if (rodzajWypelnienia === PowierzchniaWypelnienia.MINIMUM && powierzchniaCm2 > 121 && powierzchniaCm2 <= 144) {
+                iloscSciegow = 7000;
+              } else if (rodzajWypelnienia === PowierzchniaWypelnienia.SREDNIO && powierzchniaCm2 > 121 && powierzchniaCm2 <= 144) {
+                iloscSciegow = 22000;
+              } else if (rodzajWypelnienia === PowierzchniaWypelnienia.MAXIMUM && powierzchniaCm2 > 121 && powierzchniaCm2 <= 144) {
+                iloscSciegow = 30000;
+              } else {
+                iloscSciegow = null;
+              }
+
+              return iloscSciegow;
             }
           </script>
-          <h3>Kalkulator Haftu</h3>
           <!-- Dodaj formularz lub inne elementy -->
         </div>
       </div>
