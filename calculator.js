@@ -110,7 +110,7 @@ function obliczCene() {
         cenaSztuki = 4.4;
     }
 
-    let powierzchniaCm2 = wysokosc * dlugosc;
+
     let rodzajWypelnienia;
     switch (wypelnienie) {
         case "do 40% powierzchni":
@@ -127,13 +127,13 @@ function obliczCene() {
             return;
     }
 
-    let iloscSciegow = zwrocWartoscSciegow(rodzajWypelnienia, powierzchniaCm2);
+    let iloscSciegow = zwrocWartoscSciegow(rodzajWypelnienia, powierzchnia);
 
     if (iloscSciegow !== null) {
         // TODO dalesze wyliczenia
         const cenaZaSztuke = wyliczCene(iloscSztuk, iloscSciegow);
 
-        document.getElementById("wynik").innerHTML = `Cena za haft: ${cenaZaSztuke.toFixed(2)} PLN`;
+        document.getElementById("wynik").innerHTML = `Cena za haft: <b>${cenaZaSztuke.toFixed(2)} PLN</b> cena za całe zamówienie: <b>${(cenaZaSztuke * iloscSztuk).toFixed(2)} PLN</b>`;
     } else {
         document.getElementById("wynik").innerHTML = `Prosimy o kontakt w celu indywidualnej wyceny.`;
     }
@@ -297,6 +297,7 @@ function calculatePrice() {
     }
 
     let basePrice = 0;
+    
     switch (printType) {
         case "Flex":
             switch (size) {
@@ -585,7 +586,10 @@ function calculatePrice() {
     const totalPrice = basePrice * quantity;
 
     const resultElement = document.getElementById("result");
-    resultElement.innerHTML = `Całkowita cena: <strong>${totalPrice.toFixed(2)} zł (cena podana w netto)`;
+    resultElement.innerHTML = `Cena za sztukę: <strong>${basePrice.toFixed(2)} zł</strong>, 
+    Całkowita cena za ${quantity} szt.: <strong>${totalPrice.toFixed(2)} zł</strong> 
+    (ceny podane w netto)`;
+    //resultElement.innerHTML = `Całkowita cena: <strong>${totalPrice.toFixed(2)} zł (cena podana w netto)`;
 }
 
 function zwrocWartoscSciegow(rodzajWypelnienia, powierzchniaCm2) {
@@ -803,7 +807,11 @@ function calculatePriceDTF() {
     const totalPrice = basePrice * quantity;
     // Pamiętaj, żeby zdefiniować resultElement, bo go wcześniej nie miałeś
     const resultElement = document.getElementById("resultDTF");
-    resultElement.innerHTML = `Całkowita cena: <strong>${totalPrice.toFixed(2)} zł (cena podana w netto)`;
+    // resultElement.innerHTML = `Całkowita cena: <strong>${totalPrice.toFixed(2)} zł (cena podana w netto)`;
+
+    resultElement.innerHTML = `Cena za sztukę: <strong>${basePrice.toFixed(2)} zł</strong>, 
+    Całkowita cena za ${quantity} szt.: <strong>${totalPrice.toFixed(2)} zł</strong> 
+    (ceny podane w netto)`;
 }
 
 
