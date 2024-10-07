@@ -74,13 +74,27 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+document.addEventListener("DOMContentLoaded", () => {
+    const inputElements = document.querySelectorAll("#haftFormEng input");
+    inputElements.forEach(inputElement => {
+        inputElement.addEventListener("input", obliczCene('eng'), false);
+    });
+    
+    // Wybierz wszystkie selecty w formularzu
+    const selectElements = document.querySelectorAll("#haftFormEng select");
+    selectElements.forEach(selectElement => {
+        selectElement.addEventListener("change", obliczCene('eng'), false);
+    });
+});
+
+
 const PowierzchniaWypelnienia = {
     MINIMUM: 'MINIMUM',
     SREDNIO: 'SREDNIO',
     MAXIMUM: 'MAXIMUM'
 };
 
-function obliczCene() {
+function obliczCene(language) {
     const wysokosc = parseInt(document.getElementById("wysokosc").value);
     const dlugosc = parseInt(document.getElementById("dlugosc").value);
     const powierzchnia = wysokosc * dlugosc;
@@ -132,10 +146,17 @@ function obliczCene() {
     if (iloscSciegow !== null) {
         // TODO dalesze wyliczenia
         const cenaZaSztuke = wyliczCene(iloscSztuk, iloscSciegow);
-
-        document.getElementById("wynik").innerHTML = `Cena za haft: <b>${cenaZaSztuke.toFixed(2)} PLN</b> cena za całe zamówienie: <b>${(cenaZaSztuke * iloscSztuk).toFixed(2)} PLN</b>`;
+        if (language === 'eng') {
+            document.getElementById("wynik").innerHTML = `Price per haft: <b>${cenaZaSztuke.toFixed(2)} PLN</b> Total price for the entire order: <b>${(cenaZaSztuke * iloscSztuk).toFixed(2)} PLN</b>`;
+        } else {
+            document.getElementById("wynik").innerHTML = `Cena za haft: <b>${cenaZaSztuke.toFixed(2)} PLN</b> cena za całe zamówienie: <b>${(cenaZaSztuke * iloscSztuk).toFixed(2)} PLN</b>`;
+        }
     } else {
-        document.getElementById("wynik").innerHTML = `Prosimy o kontakt w celu indywidualnej wyceny.`;
+        if (language === 'eng') {
+            document.getElementById("wynik").innerHTML = `Please contact us for an individual quotation.`;
+        } else {
+            document.getElementById("wynik").innerHTML = `Prosimy o kontakt w celu indywidualnej wyceny.`;
+        }
     }
 }
 
@@ -292,7 +313,13 @@ function calculatePrice() {
 
     if (colors === 0) {
         const resultElement = document.getElementById("result");
-        resultElement.innerHTML = 'Wybierz ilość kolorów, aby obliczyć cenę.';
+        if(resultElement != null){
+            resultElement.innerHTML = 'Wybierz ilość kolorów, aby obliczyć cenę.';
+        } 
+        const resultElementEng = document.getElementById("resultEng");
+        if(resultElementEng != null){
+            resultElementEng.innerHTML = 'Please select the number of colors to calculate the price.';
+        }
         return; // Przerwij funkcję, jeśli nie wybrano żadnego koloru
     }
 
@@ -585,11 +612,10 @@ function calculatePrice() {
 
     const totalPrice = basePrice * quantity;
 
-    const resultElement = document.getElementById("result");
+    const resultElement = document.getElementById("wynik");
     resultElement.innerHTML = `Cena za sztukę: <strong>${basePrice.toFixed(2)} zł</strong>, 
     Całkowita cena za ${quantity} szt.: <strong>${totalPrice.toFixed(2)} zł</strong> 
     (ceny podane w netto)`;
-    //resultElement.innerHTML = `Całkowita cena: <strong>${totalPrice.toFixed(2)} zł (cena podana w netto)`;
 }
 
 function zwrocWartoscSciegow(rodzajWypelnienia, powierzchniaCm2) {
@@ -671,6 +697,7 @@ function calculatePriceDTF() {
     const printType = document.getElementById("printType").value;
     const size = document.getElementById("sizeDTF").value;
     const quantity = parseInt(document.getElementById("quantityDTF").value);
+    
 
     let basePrice = 0;
     switch (size) {
