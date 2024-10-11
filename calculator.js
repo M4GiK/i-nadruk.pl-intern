@@ -77,13 +77,17 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", () => {
     const inputElements = document.querySelectorAll("#haftFormEng input");
     inputElements.forEach(inputElement => {
-        inputElement.addEventListener("input", obliczCene('eng'), false);
+        inputElement.addEventListener("input", function() {
+            obliczCene('eng');
+        }, false);
     });
     
     // Wybierz wszystkie selecty w formularzu
     const selectElements = document.querySelectorAll("#haftFormEng select");
     selectElements.forEach(selectElement => {
-        selectElement.addEventListener("change", obliczCene('eng'), false);
+        selectElement.addEventListener("change", function() {
+            obliczCene('eng');
+        }, false);
     });
 });
 
@@ -147,9 +151,11 @@ function obliczCene(language) {
         // TODO dalesze wyliczenia
         const cenaZaSztuke = wyliczCene(iloscSztuk, iloscSciegow);
         if (language === 'eng') {
-            document.getElementById("wynik").innerHTML = `Price per haft: <b>${cenaZaSztuke.toFixed(2)} PLN</b> Total price for the entire order: <b>${(cenaZaSztuke * iloscSztuk).toFixed(2)} PLN</b>`;
+            document.getElementById("wynik").innerHTML = `Price per haft: <b>${cenaZaSztuke.toFixed(2)} PLN</b> Total price for the entire order: <b>${(cenaZaSztuke * iloscSztuk).toFixed(2)} PLN</b> (prices are quoted net)
+                        <br><p style="font-size: 10px">&#829;The order may require the preparation of an embroidery program costing from 80.00 PLN net</p>`;
         } else {
-            document.getElementById("wynik").innerHTML = `Cena za haft: <b>${cenaZaSztuke.toFixed(2)} PLN</b> cena za całe zamówienie: <b>${(cenaZaSztuke * iloscSztuk).toFixed(2)} PLN</b>`;
+            document.getElementById("wynik").innerHTML = `Cena za haft: <b>${cenaZaSztuke.toFixed(2)} zł</b> cena za całe zamówienie: <b>${(cenaZaSztuke * iloscSztuk).toFixed(2)} zł</b> (ceny podane w netto)
+                        <br><p style="font-size: 10px">&#829;Do realizacji może dojość przygotowanie programu hafciarskiego w kwocie od 80,00 zł netto</p>`;
         }
     } else {
         if (language === 'eng') {
@@ -612,10 +618,20 @@ function calculatePrice() {
 
     const totalPrice = basePrice * quantity;
 
-    const resultElement = document.getElementById("wynik");
-    resultElement.innerHTML = `Cena za sztukę: <strong>${basePrice.toFixed(2)} zł</strong>, 
-    Całkowita cena za ${quantity} szt.: <strong>${totalPrice.toFixed(2)} zł</strong> 
-    (ceny podane w netto)`;
+    const resultElement = document.getElementById("result");
+    if (resultElement)
+        resultElement.innerHTML = `Cena za sztukę: <strong>${basePrice.toFixed(2)} zł</strong>, 
+        Całkowita cena za ${quantity} szt.: <strong>${totalPrice.toFixed(2)} zł</strong> 
+        (ceny podane w netto)`;
+
+    const resultElementEng = document.getElementById("resultEng");
+    if (resultElementEng)
+        resultElementEng.innerHTML = `Price per item: <strong>${basePrice.toFixed(2)} PLN</strong>, 
+        Total price for ${quantity} items: <strong>${totalPrice.toFixed(2)} PLN</strong> 
+        (prices are quoted net)`;
+
+
+
 }
 
 function zwrocWartoscSciegow(rodzajWypelnienia, powierzchniaCm2) {
@@ -830,15 +846,19 @@ function calculatePriceDTF() {
 
 
     // Obliczenia cen
-
     const totalPrice = basePrice * quantity;
-    // Pamiętaj, żeby zdefiniować resultElement, bo go wcześniej nie miałeś
-    const resultElement = document.getElementById("resultDTF");
-    // resultElement.innerHTML = `Całkowita cena: <strong>${totalPrice.toFixed(2)} zł (cena podana w netto)`;
 
-    resultElement.innerHTML = `Cena za sztukę: <strong>${basePrice.toFixed(2)} zł</strong>, 
-    Całkowita cena za ${quantity} szt.: <strong>${totalPrice.toFixed(2)} zł</strong> 
-    (ceny podane w netto)`;
+    // Pamiętaj, żeby zdefiniować resultElement, bo go wcześniej nie miałeś
+    const resultElementDTF = document.getElementById("resultDTF");
+    if (resultElementDTF)
+        resultElementDTF.innerHTML = `Cena za sztukę: <strong>${basePrice.toFixed(2)} zł</strong>, 
+                                    Całkowita cena za ${quantity} szt.: <strong>${totalPrice.toFixed(2)} zł</strong> 
+                                    (ceny podane w netto)`;
+    const resultElementDTFEng = document.getElementById("resultDTFEng");
+    if (resultElementDTFEng)
+        resultElementDTFEng.innerHTML = `Price per item: <strong>${basePrice.toFixed(2)} PLN</strong>, 
+                                    Total price for ${quantity} items: <strong>${totalPrice.toFixed(2)} PLN</strong> 
+                                    (prices are quoted net)`;
 }
 
 

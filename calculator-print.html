@@ -1,0 +1,137 @@
+<script src="catalog/view/javascript/calculator.js"></script>
+
+
+<div id="tlo">
+    <h2 class="center">Choose calculator:</h2>
+    <div class="calc-buttons">
+        <a id="flexFlock" class="tab-button active" position="250px 300px" data-tab-target="#kalkulatorFlex"
+           onclick="otworzKalkulator('kalkulatorFlex')">Flex and Flock calculator</a>
+        <div class="vertical-line"></div>
+        <a id="DFT" class="tab-button active" position="250px 300px" data-tab-target="#kalkulatorDTF"
+           onclick="otworzKalkulator('kalkulatorDTF')">DTF calculator</a>
+        <div class="vertical-line1"></div>
+        <a id="Haft" class="tab-button active" position="250px 300px" data-tab-target="#kalkulatorHaft"
+           onclick="otworzKalkulator('kalkulatorHaft')">Embroidery calculator</a>
+    </div>
+    <div class="kalkulatorRamka__content">
+
+        <!-- Miejsce na wyświetlenie kalkulatora -->
+        <div id="kalkulatorFlex" style="display: none;">
+            <h3>Flex and Flock calculator</h3>
+            <div>
+                <div class="style-sztuki" style="display: flex; align-items: center; margin-bottom: 6px;">
+                    <label for="quantity" style="width: 150px; margin-right: 10px;">quantity of pieces:</label>
+                    <input type="number" id="quantity" min="1" max="500" value="1" required="" pattern="\d+"
+                           onchange="calculatePrice()" style="width: 20%;">
+                </div>
+
+
+                <div style="display: flex; align-items: center; margin-bottom: 6px;">
+                    <label for="printType" style="width: 150px; margin-right: 10px;">Print type:</label>
+                    <select id="printType" onchange="calculatePrice()" style="width: 20%;">
+                        <option value="Flex">Flex</option>
+                        <option value="Flock">Flock</option> <!-- Nowa opcja -->
+                    </select>
+                </div>
+
+                <div class="style-size" style="display: flex; align-items: center; margin-bottom: 6px;">
+                    <label for="size" style="width: 150px; margin-right: 10px;">Size:</label>
+                    <select id="size" onchange="calculatePrice()" style="width: 20%;">
+                        <option value="A7">A7 100x75mm</option>
+                        <option value="A6">A6 100x150mm</option>
+                        <option value="A5">A5 150x200mm</option>
+                        <option value="A4">A4 290x200mm</option>
+                        <option value="A3">A3 290x400mm</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="checkbox-list" style="display: flex; align-items: center; margin-bottom: 6px;">
+                <label style="width: 129px; margin-right: 10px;">Number of colors:</label>
+                <input type="checkbox" class="checkbox-calculator" id="color1" name="colors" value="1"
+                       onchange="handleCheckboxChange(this)">
+                <label for="color1">color 1</label>
+                <input type="checkbox" class="checkbox-calculator" id="color2" name="colors" value="2"
+                       onchange="handleCheckboxChange(this)">
+                <label for="color2">color 2</label>
+                <input type="checkbox" class="checkbox-calculator" id="color3" name="colors" value="3"
+                       onchange="handleCheckboxChange(this)">
+                <label for="color3">color 3</label>
+            </div>
+            <br>
+            <div id="resultEng">Select the number of colors to calculate the price.</div>
+        </div>
+
+
+        <!-- Dodaj formularz lub inne elementy -->
+
+        <div id="kalkulatorDTF" style="display: none;">
+            <h3>DTF calculator</h3>
+            <div>
+
+                <div id="calculatorDTF" style="display: flex; align-items: center; margin-bottom: 6px;">
+                    <label htmlfor="quantity" style="width: 150px; margin-right: 10px;">quantity of pieces:</label>
+                    <input type="number" id="quantityDTF" min="1" max="500" value="1" onchange="calculatePriceDTF()"
+                           style="width: 20%;">
+                </div>
+                <div style="display: flex; align-items: center; margin-bottom: 6px;">
+                    <label htmlfor="size" style="width: 150px; margin-right: 10px;">Size:</label>
+                    <select id="sizeDTF" onchange="calculatePriceDTF()" style="width: 20%;">
+                        <option value="A7">A7 100x75mm</option>
+                        <option value="A6">A6 100x150mm</option>
+                        <option value="A5">A5 150x200mm</option>
+                        <option value="A4">A4 290x200mm</option>
+                        <option value="A3">A3 290x400mm</option>
+                    </select><br>
+                </div>
+
+
+                <!-- Dodajemy element, gdzie będzie wyświetlany wynik -->
+                <br>
+                <div id="resultDTFEng">Select quantity and size to display the price.</div>
+            </div>
+
+            <!-- Dodaj formularz lub inne elementy -->
+        </div>
+        <div id="kalkulatorHaft" style="display: none;">
+            <h3>Embroidery calculator</h3><br>
+            <div id="haftFormEng">
+                <div style="display: flex; align-items: center; margin-bottom: 6px;">
+                    <label for="iloscSztuk" style="width: 150px; margin-right: 10px;">Quantity of pieces:</label>
+                    <input type="number" id="iloscSztuk" name="iloscSztuk" value="1" min="1" max="500" required=""
+                           style="width: 20%;">
+                </div>
+
+                <div style="display: flex; align-items: center; margin-bottom: 6px;">
+                    <label for="wysokosc" style="width: 150px; margin-right: 10px;">Height
+                        (cm):</label>
+                    <input type="number" id="wysokosc" name="wysokosc" value="1" min="1" max="500" required=""
+                           style="width: 20%;">
+                </div>
+
+                <div style="display: flex; align-items: center; margin-bottom: 6px;">
+                    <label for="dlugosc" style="width: 150px; margin-right: 10px;">Length
+                        (cm):</label>
+                    <input type="number" id="dlugosc" name="dlugosc" value="1" min="1" max="500" required=""
+                           style="width: 20%;">
+                </div>
+
+                <div style="display: flex; align-items: center; margin-bottom: 6px;">
+                    <label for="wypelnienie" style="width: 150px; margin-right: 10px;">Type of filling:</label>
+                    <select id="wypelnienie" name="wypelnienie" required="" style="width: 20%;">
+                        <option value="do 40% powierzchni">up to 40% of the surface</option>
+                        <option value="od 41-70%">from 41-70%</option>
+                        <option value="powyzej 71%">over 71%</option>
+                    </select>
+                </div>
+            </div>
+
+            <br>
+            <div id="wynik">Select the number of pieces and area to see the price.</div>
+        </div>
+
+        <!-- Dodaj formularz lub inne elementy -->
+
+    </div>
+
+</div>
