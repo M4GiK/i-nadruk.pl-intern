@@ -105,184 +105,174 @@ function obliczCene(language) {
     const iloscSztuk = parseInt(document.getElementById("iloscSztuk").value);
     const wypelnienie = document.getElementById("wypelnienie").value;
 
-    const cenaZaCm2 = 0.50; // cena za cm2 --------------------------------------------------------------------
-
-    let cenaSztuki;
-    if (iloscSztuk <= 2) {
-        cenaSztuki = 27.5;
-    } else if (iloscSztuk <= 6) {
-        cenaSztuki = 16.5;
-    } else if (iloscSztuk <= 12) {
-        cenaSztuki = 14.5;
-    } else if (iloscSztuk <= 24) {
-        cenaSztuki = 12;
-    } else if (iloscSztuk <= 50) {
-        cenaSztuki = 8.8;
-    } else if (iloscSztuk <= 100) {
-        cenaSztuki = 6.6;
-    } else if (iloscSztuk <= 300) {
-        cenaSztuki = 5.5;
-    } else if (iloscSztuk <= 500) {
-        cenaSztuki = 4.4;
-    } else {
-        cenaSztuki = 4.4;
-    }
-
-
-    let rodzajWypelnienia;
-    switch (wypelnienie) {
-        case "do 40% powierzchni":
-            rodzajWypelnienia = PowierzchniaWypelnienia.MINIMUM;
-            break;
-        case "od 41-70%":
-            rodzajWypelnienia = PowierzchniaWypelnienia.SREDNIO;
-            break;
-        case "powyzej 71%":
-            rodzajWypelnienia = PowierzchniaWypelnienia.MAXIMUM;
-            break;
-        default:
-            document.getElementById("wynik").innerHTML = "Nieprawidłowe wypełnienie";
-            return;
-    }
-
-    let iloscSciegow = zwrocWartoscSciegow(rodzajWypelnienia, powierzchnia);
-
-    if (iloscSciegow !== null) {
-        // TODO dalesze wyliczenia
-        const cenaZaSztuke = wyliczCene(iloscSztuk, iloscSciegow);
-        if (language === 'eng') {
-            document.getElementById("wynik").innerHTML = `Price per haft: <b>${cenaZaSztuke.toFixed(2)} PLN</b> Total price for the entire order: <b>${(cenaZaSztuke * iloscSztuk).toFixed(2)} PLN</b> (prices are quoted net)
-                        <br><p style="font-size: 10px">&#829;The order may require the preparation of an embroidery program costing from 80.00 PLN net</p>`;
-        } else {
-            document.getElementById("wynik").innerHTML = `Cena za haft: <b>${cenaZaSztuke.toFixed(2)} zł</b> cena za całe zamówienie: <b>${(cenaZaSztuke * iloscSztuk).toFixed(2)} zł</b> (ceny podane w netto)
-                        <br><p style="font-size: 10px">&#829;Do realizacji może dojość przygotowanie programu hafciarskiego w kwocie od 80,00 zł netto</p>`;
-        }
-    } else {
+    if (wysokosc > 29 || dlugosc > 29) {
         if (language === 'eng') {
             document.getElementById("wynik").innerHTML = `Please contact us for an individual quotation.`;
         } else {
             document.getElementById("wynik").innerHTML = `Prosimy o kontakt w celu indywidualnej wyceny.`;
         }
+    } else {
+
+        let rodzajWypelnienia;
+        switch (wypelnienie) {
+            case "do 40% powierzchni":
+                rodzajWypelnienia = PowierzchniaWypelnienia.MINIMUM;
+                break;
+            case "od 41-70%":
+                rodzajWypelnienia = PowierzchniaWypelnienia.SREDNIO;
+                break;
+            case "powyzej 71%":
+                rodzajWypelnienia = PowierzchniaWypelnienia.MAXIMUM;
+                break;
+            default:
+                document.getElementById("wynik").innerHTML = "Nieprawidłowe wypełnienie";
+                return;
+        }
+
+        let iloscSciegow = zwrocWartoscSciegow(rodzajWypelnienia, powierzchnia);
+
+        if (iloscSciegow !== null) {
+            // TODO dalesze wyliczenia
+            const cenaZaSztuke = wyliczCene(iloscSztuk, iloscSciegow, 23);
+            if (language === 'eng') {
+                document.getElementById("wynik").innerHTML = `Price per haft: <b>${cenaZaSztuke.toFixed(2)} PLN</b> Total price for the entire order: <b>${(cenaZaSztuke * iloscSztuk).toFixed(2)} PLN</b> (prices are quoted net)
+                            <br><p style="font-size: 10px">&#829;The order may require the preparation of an embroidery program costing from 80.00 PLN net</p>`;
+            } else {
+                document.getElementById("wynik").innerHTML = `Cena za haft: <b>${cenaZaSztuke.toFixed(2)} zł</b> cena za całe zamówienie: <b>${(cenaZaSztuke * iloscSztuk).toFixed(2)} zł</b> (ceny podane w netto)
+                            <br><p style="font-size: 10px">&#829;Do realizacji może dojość przygotowanie programu hafciarskiego w kwocie od 80,00 zł netto</p>`;
+            }
+        } else {
+            if (language === 'eng') {
+                document.getElementById("wynik").innerHTML = `Please contact us for an individual quotation.`;
+            } else {
+                document.getElementById("wynik").innerHTML = `Prosimy o kontakt w celu indywidualnej wyceny.`;
+            }
+        }
     }
 }
 
-function wyliczCene(iloscSztuk, iloscSciegow) {
+function wyliczCene(iloscSztuk, iloscSciegow, parametrProcentowy = 0) {
     let cenaSztuki = null;
 
+    if (parametrProcentowy !== 0)
+        wartoscdoprzemoneznia = (1 + parametrProcentowy / 100);
+    else 
+        wartoscdoprzemoneznia = 1;
+
     if (iloscSciegow > 0 && iloscSciegow <= 3000 && iloscSztuk > 0 && iloscSztuk <= 2) {
-        cenaSztuki = 27.5;
+        cenaSztuki = 27.5 * wartoscdoprzemoneznia;
     } else if (iloscSciegow > 0 && iloscSciegow <= 3000 && iloscSztuk > 2 && iloscSztuk <= 6) {
-        cenaSztuki = 16.5;
+        cenaSztuki = 16.5 * wartoscdoprzemoneznia;
     } else if (iloscSciegow > 0 && iloscSciegow <= 3000 && iloscSztuk > 6 && iloscSztuk <= 12) {
-        cenaSztuki = 14.5;
+        cenaSztuki = 14.5 * wartoscdoprzemoneznia;
     } else if (iloscSciegow > 0 && iloscSciegow <= 3000 && iloscSztuk > 12 && iloscSztuk <= 24) {
-        cenaSztuki = 12;
+        cenaSztuki = 12 * wartoscdoprzemoneznia;
     } else if (iloscSciegow > 0 && iloscSciegow <= 3000 && iloscSztuk > 24 && iloscSztuk <= 50) {
-        cenaSztuki = 8.8;
+        cenaSztuki = 8.8 * wartoscdoprzemoneznia;
     } else if (iloscSciegow > 0 && iloscSciegow <= 3000 && iloscSztuk > 50 && iloscSztuk <= 100) {
-        cenaSztuki = 6.6;
+        cenaSztuki = 6.6 * wartoscdoprzemoneznia;
     } else if (iloscSciegow > 0 && iloscSciegow <= 3000 && iloscSztuk > 100 && iloscSztuk <= 300) {
-        cenaSztuki = 5.5;
+        cenaSztuki = 5.5 * wartoscdoprzemoneznia;
     } else if (iloscSciegow > 0 && iloscSciegow <= 3000 && iloscSztuk > 300 && iloscSztuk <= 500) {
-        cenaSztuki = 4.4;
+        cenaSztuki = 4.4 * wartoscdoprzemoneznia;
     } else if (iloscSciegow > 3000 && iloscSciegow <= 5000 && iloscSztuk > 0 && iloscSztuk <= 2) {
-        cenaSztuki = 27.5;
+        cenaSztuki = 27.5 * wartoscdoprzemoneznia;
     } else if (iloscSciegow > 3000 && iloscSciegow <= 5000 && iloscSztuk > 2 && iloscSztuk <= 6) {
-        cenaSztuki = 16.5;
+        cenaSztuki = 16.5 * wartoscdoprzemoneznia;
     } else if (iloscSciegow > 3000 && iloscSciegow <= 5000 && iloscSztuk > 6 && iloscSztuk <= 12) {
-        cenaSztuki = 14.5;
+        cenaSztuki = 14.5 * wartoscdoprzemoneznia;
     } else if (iloscSciegow > 3000 && iloscSciegow <= 5000 && iloscSztuk > 12 && iloscSztuk <= 24) {
-        cenaSztuki = 13;
+        cenaSztuki = 13 * wartoscdoprzemoneznia;
     } else if (iloscSciegow > 3000 && iloscSciegow <= 5000 && iloscSztuk > 24 && iloscSztuk <= 50) {
-        cenaSztuki = 11;
+        cenaSztuki = 11 * wartoscdoprzemoneznia;
     } else if (iloscSciegow > 3000 && iloscSciegow <= 5000 && iloscSztuk > 50 && iloscSztuk <= 100) {
-        cenaSztuki = 8.8;
+        cenaSztuki = 8.8 * wartoscdoprzemoneznia;
     } else if (iloscSciegow > 3000 && iloscSciegow <= 5000 && iloscSztuk > 100 && iloscSztuk <= 300) {
-        cenaSztuki = 7.5;
+        cenaSztuki = 7.5 * wartoscdoprzemoneznia;
     } else if (iloscSciegow > 3000 && iloscSciegow <= 5000 && iloscSztuk > 300 && iloscSztuk <= 500) {
-        cenaSztuki = 5;
+        cenaSztuki = 6.6 * wartoscdoprzemoneznia    ;
     } else if (iloscSciegow > 5000 && iloscSciegow <= 7000 && iloscSztuk > 0 && iloscSztuk <= 2) {
-        cenaSztuki = 27.5;
+        cenaSztuki = 27.5 * wartoscdoprzemoneznia;
     } else if (iloscSciegow > 5000 && iloscSciegow <= 7000 && iloscSztuk > 2 && iloscSztuk <= 6) {
-        cenaSztuki = 16.5;
+        cenaSztuki = 16.5 * wartoscdoprzemoneznia;
     } else if (iloscSciegow > 5000 && iloscSciegow <= 7000 && iloscSztuk > 6 && iloscSztuk <= 12) {
-        cenaSztuki = 15.4;
+        cenaSztuki = 15.4 * wartoscdoprzemoneznia;
     } else if (iloscSciegow > 5000 && iloscSciegow <= 7000 && iloscSztuk > 12 && iloscSztuk <= 24) {
-        cenaSztuki = 14.5;
+        cenaSztuki = 14.5 * wartoscdoprzemoneznia;
     } else if (iloscSciegow > 5000 && iloscSciegow <= 7000 && iloscSztuk > 24 && iloscSztuk <= 50) {
-        cenaSztuki = 13;
+        cenaSztuki = 13 * wartoscdoprzemoneznia;
     } else if (iloscSciegow > 5000 && iloscSciegow <= 7000 && iloscSztuk > 50 && iloscSztuk <= 100) {
-        cenaSztuki = 11;
+        cenaSztuki = 11 * wartoscdoprzemoneznia;
     } else if (iloscSciegow > 5000 && iloscSciegow <= 7000 && iloscSztuk > 100 && iloscSztuk <= 500) {
         cenaSztuki = 'Prosimy o kontakt do wyceny indywidualnej';
     } else if (iloscSciegow > 7000 && iloscSciegow <= 10000 && iloscSztuk > 0 && iloscSztuk <= 2) {
-        cenaSztuki = 35.2;
+        cenaSztuki = 35.2 * wartoscdoprzemoneznia;
     } else if (iloscSciegow > 7000 && iloscSciegow <= 10000 && iloscSztuk > 2 && iloscSztuk <= 6) {
-        cenaSztuki = 22;
+        cenaSztuki = 22 * wartoscdoprzemoneznia;
     } else if (iloscSciegow > 7000 && iloscSciegow <= 10000 && iloscSztuk > 6 && iloscSztuk <= 12) {
-        cenaSztuki = 16.5;
+        cenaSztuki = 16.5 * wartoscdoprzemoneznia;
     } else if (iloscSciegow > 7000 && iloscSciegow <= 10000 && iloscSztuk > 12 && iloscSztuk <= 24) {
-        cenaSztuki = 15.4;
+        cenaSztuki = 15.4 * wartoscdoprzemoneznia;
     } else if (iloscSciegow > 7000 && iloscSciegow <= 10000 && iloscSztuk > 24 && iloscSztuk <= 50) {
-        cenaSztuki = 14.5;
+        cenaSztuki = 14.5 * wartoscdoprzemoneznia;
     } else if (iloscSciegow > 7000 && iloscSciegow <= 10000 && iloscSztuk > 50 && iloscSztuk <= 100) {
-        cenaSztuki = 12;
+        cenaSztuki = 12 * wartoscdoprzemoneznia;
     } else if (iloscSciegow > 7000 && iloscSciegow <= 10000 && iloscSztuk > 100 && iloscSztuk <= 500) {
         cenaSztuki = 'Prosimy o kontakt do wyceny indywidualnej';
     } else if (iloscSciegow > 10000 && iloscSciegow <= 12000 && iloscSztuk > 0 && iloscSztuk <= 2) {
-        cenaSztuki = 38.5;
+        cenaSztuki = 38.5 * wartoscdoprzemoneznia;
     } else if (iloscSciegow > 10000 && iloscSciegow <= 12000 && iloscSztuk > 2 && iloscSztuk <= 6) {
-        cenaSztuki = 25.5;
+        cenaSztuki = 25.5 * wartoscdoprzemoneznia;
     } else if (iloscSciegow > 10000 && iloscSciegow <= 12000 && iloscSztuk > 6 && iloscSztuk <= 12) {
-        cenaSztuki = 19.4;
+        cenaSztuki = 19.4 * wartoscdoprzemoneznia;
     } else if (iloscSciegow > 10000 && iloscSciegow <= 12000 && iloscSztuk > 12 && iloscSztuk <= 24) {
-        cenaSztuki = 18.4;
+        cenaSztuki = 18.4 * wartoscdoprzemoneznia;
     } else if (iloscSciegow > 10000 && iloscSciegow <= 12000 && iloscSztuk > 24 && iloscSztuk <= 50) {
-        cenaSztuki = 16.5;
+        cenaSztuki = 16.5 * wartoscdoprzemoneznia;
     } else if (iloscSciegow > 10000 && iloscSciegow <= 12000 && iloscSztuk > 50 && iloscSztuk <= 100) {
-        cenaSztuki = 15.4;
+        cenaSztuki = 15.4 * wartoscdoprzemoneznia;
     } else if (iloscSciegow > 10000 && iloscSciegow <= 12000 && iloscSztuk > 100 && iloscSztuk <= 500) {
         cenaSztuki = 'Prosimy o kontakt do wyceny indywidualnej';
     } else if (iloscSciegow > 12000 && iloscSciegow <= 15000 && iloscSztuk > 0 && iloscSztuk <= 2) {
-        cenaSztuki = 44;
+        cenaSztuki = 44 * wartoscdoprzemoneznia;
     } else if (iloscSciegow > 12000 && iloscSciegow <= 15000 && iloscSztuk > 2 && iloscSztuk <= 6) {
-        cenaSztuki = 30.5;
+        cenaSztuki = 30.5 * wartoscdoprzemoneznia;
     } else if (iloscSciegow > 12000 && iloscSciegow <= 15000 && iloscSztuk > 6 && iloscSztuk <= 12) {
-        cenaSztuki = 22.6;
+        cenaSztuki = 22.6 * wartoscdoprzemoneznia;
     } else if (iloscSciegow > 12000 && iloscSciegow <= 15000 && iloscSztuk > 12 && iloscSztuk <= 24) {
-        cenaSztuki = 21.5;
+        cenaSztuki = 21.5 * wartoscdoprzemoneznia;
     } else if (iloscSciegow > 12000 && iloscSciegow <= 15000 && iloscSztuk > 24 && iloscSztuk <= 50) {
-        cenaSztuki = 19.8;
+        cenaSztuki = 19.8 * wartoscdoprzemoneznia;
     } else if (iloscSciegow > 12000 && iloscSciegow <= 15000 && iloscSztuk > 50 && iloscSztuk <= 100) {
-        cenaSztuki = 18.7;
+        cenaSztuki = 18.7 * wartoscdoprzemoneznia;
     } else if (iloscSciegow > 12000 && iloscSciegow <= 15000 && iloscSztuk > 100 && iloscSztuk <= 500) {
         cenaSztuki = 'Prosimy o kontakt do wyceny indywidualnej';
     } else if (iloscSciegow > 15000 && iloscSciegow <= 25000 && iloscSztuk > 0 && iloscSztuk <= 2) {
-        cenaSztuki = 55;
+        cenaSztuki = 55 * wartoscdoprzemoneznia;
     } else if (iloscSciegow > 15000 && iloscSciegow <= 25000 && iloscSztuk > 2 && iloscSztuk <= 6) {
-        cenaSztuki = 41.8;
+        cenaSztuki = 41.8 * wartoscdoprzemoneznia;
     } else if (iloscSciegow > 15000 && iloscSciegow <= 25000 && iloscSztuk > 6 && iloscSztuk <= 12) {
-        cenaSztuki = 30.8;
+        cenaSztuki = 30.8 * wartoscdoprzemoneznia;
     } else if (iloscSciegow > 15000 && iloscSciegow <= 25000 && iloscSztuk > 12 && iloscSztuk <= 24) {
-        cenaSztuki = 29.7;
+        cenaSztuki = 29.7 * wartoscdoprzemoneznia;
     } else if (iloscSciegow > 15000 && iloscSciegow <= 25000 && iloscSztuk > 24 && iloscSztuk <= 50) {
-        cenaSztuki = 28.6;
+        cenaSztuki = 28.6 * wartoscdoprzemoneznia;
     } else if (iloscSciegow > 15000 && iloscSciegow <= 25000 && iloscSztuk > 50 && iloscSztuk <= 100) {
-        cenaSztuki = 27.5;
+        cenaSztuki = 27.5 * wartoscdoprzemoneznia;
     } else if (iloscSciegow > 15000 && iloscSciegow <= 25000 && iloscSztuk > 100 && iloscSztuk <= 500) {
         cenaSztuki = 'Prosimy o kontakt do wyceny indywidualnej';
     } else if (iloscSciegow > 25000 && iloscSciegow <= 30000 && iloscSztuk > 0 && iloscSztuk <= 2) {
-        cenaSztuki = 66;
+        cenaSztuki = 66 * wartoscdoprzemoneznia;
     } else if (iloscSciegow > 25000 && iloscSciegow <= 30000 && iloscSztuk > 2 && iloscSztuk <= 6) {
-        cenaSztuki = 46.8;
+        cenaSztuki = 46.8 * wartoscdoprzemoneznia;
     } else if (iloscSciegow > 25000 && iloscSciegow <= 30000 && iloscSztuk > 6 && iloscSztuk <= 12) {
-        cenaSztuki = 36.5;
+        cenaSztuki = 36.5 * wartoscdoprzemoneznia;
     } else if (iloscSciegow > 25000 && iloscSciegow <= 30000 && iloscSztuk > 12 && iloscSztuk <= 24) {
-        cenaSztuki = 35.5;
+        cenaSztuki = 35.5 * wartoscdoprzemoneznia;
     } else if (iloscSciegow > 25000 && iloscSciegow <= 30000 && iloscSztuk > 24 && iloscSztuk <= 50) {
-        cenaSztuki = 34.5;
+        cenaSztuki = 34.5 * wartoscdoprzemoneznia;
     } else if (iloscSciegow > 25000 && iloscSciegow <= 30000 && iloscSztuk > 50 && iloscSztuk <= 100) {
-        cenaSztuki = 33;
+        cenaSztuki = 33 * wartoscdoprzemoneznia;
     } else if (iloscSciegow > 25000 && iloscSciegow <= 30000 && iloscSztuk > 100 && iloscSztuk <= 500) {
         cenaSztuki = 'Prosimy o kontakt do wyceny indywidualnej';
     }
